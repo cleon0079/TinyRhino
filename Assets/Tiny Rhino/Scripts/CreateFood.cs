@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CreateFood : MonoBehaviour
 {
-    public struct food
+    public struct box
     {
         public GameObject pointobject;
 
@@ -12,51 +12,85 @@ public class CreateFood : MonoBehaviour
         public int y;
     }
 
-    public food[,] m_food;
+    public box[,] m_box;
 
     private int m_x = 9;
     private int m_y = 9;
 
-
-    List<GameObject> foods = new List<GameObject>();
+    public List<GameObject> checkBoxs = new List<GameObject>();
+    public List<GameObject> boxGameobjects = new List<GameObject>();
+    public List<GameObject> foods = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         int count = 0;
+        int count1 = 0;
+        int count2 = 0;
         GameObject thing;
+        GameObject thing1;
+        GameObject thing2;
         do
         {
-            thing = Resources.Load<GameObject>("Prefab/Box/Thing_" + count);
+            thing = Resources.Load<GameObject>("Prefab/Box/Box_" + count);
             if(thing  != null)
             {
-                foods.Add(thing);
+                boxGameobjects.Add(thing);
             }
             count++;
         } while (thing != null);
 
+        do
+        {
+            thing1 = Resources.Load<GameObject>("Prefab/Foods/" + count1);
+            if(thing1 != null)
+            {
+                foods.Add(thing1);
+            }
+            count1++;
+        } while (thing1 != null);
+
+        do
+        {
+            thing2 = Resources.Load<GameObject>("Prefab/Box/Check_" + count2);
+            if(thing2 != null)
+            {
+                checkBoxs.Add(thing2);
+            }
+            count2++;
+        } while (thing2 != null);
+
+
         //foods = new List<GameObject>(Resources.LoadAll<GameObject>("Prefab/Box"));
-        m_food = new food[m_x, m_y];
+        m_box = new box[m_x, m_y];
         for (int j = 0; j < m_y; j++)
         {
             for (int i = 0; i < m_x; i++)
             {
-                m_food[i, j].pointobject = foods[Random.Range(0, foods.Count)];
-                GameObject box = Instantiate(m_food[i, j].pointobject);
-                BoxCollider2D collider = box.GetComponent<BoxCollider2D>();
+                m_box[i, j].pointobject = boxGameobjects[Random.Range(0, boxGameobjects.Count)];
+                GameObject box = Instantiate(m_box[i, j].pointobject);
+                BoxCollider2D collider = box.GetComponentInChildren<BoxCollider2D>();
 
                 //float x = previousbox.GetComponent<Renderer>().bounds.max.x + box.GetComponent<Renderer>().bounds.extents.x;
 
-                box.transform.localPosition = new Vector2(i * collider.size.x, j * collider.size.y);
+                box.transform.localPosition = new Vector2(i * collider.size.x - 1, j * collider.size.y - 4.2f);
 
-                m_food[i, j].x = i;
-                m_food[i, j].y = j;
+                m_box[i, j].x = i;
+                m_box[i, j].y = j;
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject CreateFoods()
     {
-        
+        GameObject food = foods[Random.Range(0, foods.Count)];
+        food = Instantiate(food);
+        return food;
+    }
+
+    public GameObject CreateCheckBox()
+    {
+        GameObject checkBox = checkBoxs[Random.Range(0, checkBoxs.Count)];
+        checkBox = Instantiate(checkBox);
+        return checkBox;
     }
 }
