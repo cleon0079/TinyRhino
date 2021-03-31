@@ -18,6 +18,11 @@ public class Check : MonoBehaviour
         }
     }
 
+    private void OnMouseUpAsButton()
+    {
+        Debug.LogError($"Banana: {name}");
+    }
+
     // Update is called once per frame
     void Update()
     {

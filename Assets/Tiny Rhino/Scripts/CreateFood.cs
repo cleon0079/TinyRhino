@@ -14,8 +14,10 @@ public class CreateFood : MonoBehaviour
 
     public box[,] m_box;
 
-    private int m_x = 9;
-    private int m_y = 9;
+    [SerializeField] int m_x = 9;
+    [SerializeField] int m_y = 9;
+
+    public GameObject spawnPlace;
 
     public List<GameObject> checkBoxs = new List<GameObject>();
     public List<GameObject> boxGameobjects = new List<GameObject>();
@@ -67,12 +69,14 @@ public class CreateFood : MonoBehaviour
             for (int i = 0; i < m_x; i++)
             {
                 m_box[i, j].pointobject = boxGameobjects[Random.Range(0, boxGameobjects.Count)];
-                GameObject box = Instantiate(m_box[i, j].pointobject);
+                GameObject box = Instantiate(m_box[i, j].pointobject, spawnPlace.transform);
                 BoxCollider2D collider = box.GetComponentInChildren<BoxCollider2D>();
 
                 //float x = previousbox.GetComponent<Renderer>().bounds.max.x + box.GetComponent<Renderer>().bounds.extents.x;
+                float xOffset = collider.size.x * box.transform.localScale.x;
+                float yOffset = collider.size.y * box.transform.localScale.y;
 
-                box.transform.localPosition = new Vector2(i * collider.size.x - 1, j * collider.size.y - 4.2f);
+                box.transform.localPosition = new Vector3(i * xOffset, j * yOffset);
 
                 m_box[i, j].x = i;
                 m_box[i, j].y = j;
