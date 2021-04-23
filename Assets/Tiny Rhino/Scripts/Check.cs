@@ -17,14 +17,4 @@ public class Check : MonoBehaviour
             sonFoods.transform.position = transform.position;
         }
     }
-
-    private void OnMouseUpAsButton()
-    {
-        Debug.LogError($"Banana: {name}");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

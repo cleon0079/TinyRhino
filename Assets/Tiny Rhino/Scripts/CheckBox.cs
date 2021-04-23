@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckBox : MonoBehaviour
 {
     CreateFood food;
+    Transform checkBox;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,14 @@ public class CheckBox : MonoBehaviour
             sonFoods.transform.parent = transform;
             sonFoods.transform.position = transform.position;
         }
-
+        checkBox = this.gameObject.transform.GetChild(0);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseUpAsButton()
     {
-        
+        if (checkBox.GetComponent<SpriteRenderer>().sortingLayerName != "Show")
+            checkBox.GetComponent<SpriteRenderer>().sortingLayerName = "Show";
+        else
+            checkBox.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
     }
 }
