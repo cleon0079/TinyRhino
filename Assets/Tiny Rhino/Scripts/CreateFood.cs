@@ -17,4 +17,19 @@ public class CreateFood : MonoBehaviour
             sonFoods.transform.position = transform.position;
         }
     }
+	
+    public GameObject CreateFoods()
+    {
+        GameObject food = foods[Random.Range(0, foods.Count)];
+        food = Instantiate(food);
+        return food;
+    }
+
+    
+    public GameObject CreateCheckBox()
+    {
+        GameObject checkBox = checkBoxs[Random.Range(0, checkBoxs.Count)];
+        checkBox = Instantiate(checkBox);
+        return checkBox;
+    }
 }
