@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Check : MonoBehaviour
+public class CreateCheckBox : MonoBehaviour
 {
-    CreateFood food;
+    CreatePlate food;
     
     // Start is called before the first frame update
     void Start()
     {
-        food = GameObject.Find("CreatBox").GetComponent<CreateFood>();
+        food = GameObject.Find("CreatBox").GetComponent<CreatePlate>();
         if (transform.childCount == 0)
         {
             GameObject sonFoods = food.CreateFoods();
