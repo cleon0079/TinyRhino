@@ -10,7 +10,6 @@ public class CountdownScript : MonoBehaviour
     public static float timeLeft;
     public float timeLostPerSecond;
 
-    // Start is called before the first frame update
     void Start()
     {   
         // 60 seconds countdown
@@ -18,12 +17,11 @@ public class CountdownScript : MonoBehaviour
         timeLostPerSecond = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // countdown is based on real time
         timeLeft -= timeLostPerSecond * Time.deltaTime;
-        // score is displayed
+        // score is displayed as text
         scoreText.text = timeLeft.ToString("0");
 
         // if countdown reaches 0, the 'GameOver' scene is loaded

@@ -5,6 +5,8 @@ using UnityEngine;
 public class CreateFood : MonoBehaviour
 {
     CreatePlate food;
+    public List<GameObject> foods = new List<GameObject>();
+    public List<GameObject> checkBoxs = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
