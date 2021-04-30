@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CreatePlate : MonoBehaviour
 {
+    [System.NonSerialized]
+    static public CreatePlate instance;
     public struct box
     {
         public GameObject pointobject;
@@ -17,8 +19,6 @@ public class CreatePlate : MonoBehaviour
     [SerializeField] int m_x = 9;
     [SerializeField] int m_y = 9;
 
-    public GameObject spawnPlace;
-
     public List<GameObject> checkBoxs = new List<GameObject>();
     public List<GameObject> boxGameobjects = new List<GameObject>();
     public List<GameObject> foods = new List<GameObject>();
@@ -27,9 +27,20 @@ public class CreatePlate : MonoBehaviour
     BoxCollider2D boxCollider2d;
     public float xOffset;
     public float yOffset;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
+
+
+
         int count = 0;
         int count1 = 0;
         int count2 = 0;
@@ -74,7 +85,7 @@ public class CreatePlate : MonoBehaviour
             for (int i = 0; i < m_x; i++)
             {
                 m_box[i, j].pointobject = boxGameobjects[Random.Range(0, boxGameobjects.Count)];
-                plate = Instantiate(m_box[i, j].pointobject, spawnPlace.transform);
+                plate = Instantiate(m_box[i, j].pointobject, this.gameObject.transform);
                 boxCollider2d = plate.GetComponentInChildren<BoxCollider2D>();
 
                 //float x = previousbox.GetComponent<Renderer>().bounds.max.x + box.GetComponent<Renderer>().bounds.extents.x;
