@@ -87,12 +87,4 @@ public class EventControl
             }
         }
     }
-
-    public void ClearEvents(string _eventName)
-    {
-        if(listeners.ContainsKey(_eventName))
-        {
-            listeners.Remove(_eventName);
-        }
-    }
 }
