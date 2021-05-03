@@ -17,6 +17,7 @@ public class Resolution : MonoBehaviour
 
     void SetScale()
     {
+        // Keep the background and the everything in a same size(same scale)
         baseRatio = baseWidth / baseHeigth * Screen.height;
         percentScale = Screen.width / baseRatio;
         if (percentScale < 1)
