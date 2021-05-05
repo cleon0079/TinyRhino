@@ -3,6 +3,8 @@ using DG.Tweening;
 
 public class FoodItems : MonoBehaviour
 {
+    Points pointsScript;
+
     public int rowIndex;
     public int columIndex;
     public int foodType;
@@ -27,11 +29,11 @@ public class FoodItems : MonoBehaviour
 
     public void UpdatePosition(int _rowIndex, int _columIndex, bool _dotween = false)
     {
-        // Locat the row and colum index
+        // Locate the row and column index
         this.rowIndex = _rowIndex;
         this.columIndex = _columIndex;
 
-        // Change the position var the row and colum index
+        // Change the position var the row and column index
         Vector3 targetPos = new Vector3((_columIndex - Def.columCount / 2f) * Def.cellSize + Def.cellSize / 2f, (_rowIndex - Def.rowCount / 2f) * Def.cellSize + Def.cellSize / 2f, 0);
         if(_dotween)
         {
@@ -51,9 +53,13 @@ public class FoodItems : MonoBehaviour
     }
 
     public void DestroyFood()
-    {
+    {      
         // Destroy the food when it match
         Destroy(foodSpriteObj);
         foodSpriteObj = null;
+
+        // adds a point per food destroyed
+        Points.points++;
+        
     }
 }

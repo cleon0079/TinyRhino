@@ -11,7 +11,7 @@ public class CountdownScript : MonoBehaviour
     public float timeLostPerSecond;
 
     void Start()
-    {   
+    {
         // 60 seconds countdown
         timeLeft = 60f;
         timeLostPerSecond = 1f;
@@ -24,10 +24,10 @@ public class CountdownScript : MonoBehaviour
         // score is displayed as text
         scoreText.text = timeLeft.ToString("0");
 
-        // if countdown reaches 0, the 'GameOver' scene is loaded
-        if (timeLeft <= 0)
+        // if countdown reaches 0, the 'Results' scene is loaded
+        if (CountdownScript.timeLeft <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("Results");
         }
     }
 }

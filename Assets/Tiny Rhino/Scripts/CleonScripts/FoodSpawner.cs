@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
+    Points pointsScript;
+
     public GameObject[] foodPrefabs;
     public ArrayList foodList;
     Transform foodSpawner;
@@ -335,6 +337,7 @@ public class FoodSpawner : MonoBehaviour
             RemoveMatchFood();
             yield return new WaitForSeconds(.2f);
             DropDownNewFood();
+
 
             // Reset the matchfood arraylist
             matchFoods = new ArrayList();
