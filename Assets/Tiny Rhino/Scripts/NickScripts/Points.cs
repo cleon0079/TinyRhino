@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Points : MonoBehaviour
 {
@@ -9,9 +10,13 @@ public class Points : MonoBehaviour
     public static int score;
     public TextMeshProUGUI highscoreText;
     public TextMeshProUGUI scoreText;
+    Scene scene;
 
     void Start()
-    {     
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        int index = currentScene.buildIndex;
+
         // highscore setup
         if (PlayerPrefs.HasKey("Highscore"))
         {
@@ -23,9 +28,26 @@ public class Points : MonoBehaviour
         }
 
         // score setup
-        score = 0;
+        if (index == 1)
+        {
+            PlayerPrefs.DeleteKey("Score");
+            score = 0;        
+        }
+        else
+        {
+            if (PlayerPrefs.HasKey("Score"))
+            {
+                score = PlayerPrefs.GetInt("Score");
+            }
+            else
+            {
+                score = 0;
+            }
+        }     
+
         scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         highscoreText.text = highscore.ToString();
+        scoreText.text = score.ToString();
     }
 
     private void Update()
@@ -49,6 +71,8 @@ public class Points : MonoBehaviour
         if (score > highscore)
         {
             PlayerPrefs.SetInt("Highscore", score);
-        }           
+        }
+
+        PlayerPrefs.SetInt("Score", score);
     }
 }

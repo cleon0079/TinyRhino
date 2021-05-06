@@ -9,12 +9,27 @@ public class CountdownScript : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public static float timeLeft;
     public float timeLostPerSecond;
+    Scene scene;
 
     void Start()
     {
-        // 60 seconds countdown
-        timeLeft = 60f;
         timeLostPerSecond = 1f;
+
+        scene = SceneManager.GetActiveScene();
+
+        // countdown timeframe for each level
+        if (scene.buildIndex == 1)
+        {           
+            timeLeft = 10f;
+        }
+        else if (scene.buildIndex == 2)
+        {
+            timeLeft = 5f;
+        }
+        else if (scene.buildIndex == 3)
+        {
+            timeLeft = 3f;
+        }
     }
 
     void Update()
@@ -27,7 +42,7 @@ public class CountdownScript : MonoBehaviour
         // if countdown reaches 0, the 'Results' scene is loaded
         if (CountdownScript.timeLeft <= 0)
         {
-            SceneManager.LoadScene("Results");
+            SceneManager.LoadScene(scene.buildIndex + 1);
         }
     }
 }
