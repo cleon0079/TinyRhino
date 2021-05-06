@@ -59,7 +59,6 @@ public class FoodItems : MonoBehaviour
         foodSpriteObj = null;
 
         // adds a point per food destroyed
-        Points.points++;
-        
+        Points.score++;      
     }
 }

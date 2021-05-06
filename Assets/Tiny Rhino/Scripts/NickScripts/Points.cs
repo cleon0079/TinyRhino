@@ -2,54 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class Points : MonoBehaviour
 {
-    public static int points;
-    public TextMeshProUGUI pointsText;
+    public static int highscore;
+    public static int score;
+    public TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI scoreText;
 
     void Start()
-    {
-        // if there is already a saved score then use that, otherwise points start at zero
-        if (PlayerPrefs.HasKey("Points"))
+    {     
+        // highscore setup
+        if (PlayerPrefs.HasKey("Highscore"))
         {
-            points = PlayerPrefs.GetInt("Points");
-        }
+            highscore = PlayerPrefs.GetInt("Highscore");
+        } 
         else
         {
-            points = 0;
+            highscore = 0;
         }
-            
-        pointsText.text = points.ToString() + " Points";
-        pointsText = GameObject.Find("PointsText").GetComponent<TextMeshProUGUI>();                       
+
+        // score setup
+        score = 0;
+        scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        highscoreText.text = highscore.ToString();
     }
 
     private void Update()
     {
-        // probably an inefficient way to update the points text (but works)
-        pointsText.text = points.ToString() + " Points";
+        // inefficient way to update the scores text
+        scoreText.text = score.ToString();
+        highscoreText.text = highscore.ToString();
     }
 
-    // point added per match
+    // point added per individual food destroyed
     public void AddPoint()
     {
-        points++;
-        pointsText.text = points.ToString() + " Points";
-    }
-
-    // resetting score
-    public void DeletePoints()
-    {
-        PlayerPrefs.DeleteKey("Points");
-        points = 0;
-        pointsText.text = points.ToString() + " Points";
+        score++;
+        scoreText.text = score.ToString();
     }
 
     // the points are saved to player prefs right before the scene changes (which destroys everything in previous seen)
     private void OnDestroy()
     {
-        PlayerPrefs.SetInt("Points", points);
-        PlayerPrefs.Save();
+        // if score is higher than the highscore the score becomes the new highscore
+        if (score > highscore)
+        {
+            PlayerPrefs.SetInt("Highscore", score);
+        }           
     }
 }
