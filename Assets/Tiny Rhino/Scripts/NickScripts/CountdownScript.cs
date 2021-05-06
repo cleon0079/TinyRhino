@@ -20,15 +20,15 @@ public class CountdownScript : MonoBehaviour
         // countdown timeframe for each level
         if (scene.buildIndex == 1)
         {           
-            timeLeft = 10f;
+            timeLeft = 60f;
         }
         else if (scene.buildIndex == 2)
         {
-            timeLeft = 5f;
+            timeLeft = 30f;
         }
         else if (scene.buildIndex == 3)
         {
-            timeLeft = 3f;
+            timeLeft = 10f;
         }
     }
 
