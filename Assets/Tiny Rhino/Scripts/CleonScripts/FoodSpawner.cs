@@ -69,7 +69,7 @@ public class FoodSpawner : MonoBehaviour
         foodList = new ArrayList();
         for (int rowIndex = 0; rowIndex < Def.rowCount; rowIndex++)
         {
-            List<FoodItems> foodColumList = new List<FoodItems>();
+            ArrayList foodColumList = new ArrayList();
             for (int columIndex = 0; columIndex < Def.columCount; columIndex++)
             {
                 FoodItems item = AddRandomFoodItem(rowIndex, columIndex);
