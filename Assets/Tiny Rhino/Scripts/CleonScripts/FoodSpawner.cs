@@ -10,7 +10,7 @@ public class FoodSpawner : MonoBehaviour
     public ArrayList foodList;
     Transform foodSpawner;
     FoodItems currentSelectFood;
-    ArrayList matchFoods;
+    List<FoodItems> matchFoods;
 
     float mouseMoveX;
     float mouseMoveY;
@@ -69,7 +69,7 @@ public class FoodSpawner : MonoBehaviour
         foodList = new ArrayList();
         for (int rowIndex = 0; rowIndex < Def.rowCount; rowIndex++)
         {
-            ArrayList foodColumList = new ArrayList();
+            List<FoodItems> foodColumList = new List<FoodItems>();
             for (int columIndex = 0; columIndex < Def.columCount; columIndex++)
             {
                 FoodItems item = AddRandomFoodItem(rowIndex, columIndex);
@@ -193,7 +193,7 @@ public class FoodSpawner : MonoBehaviour
         // Null check
         if(matchFoods == null)
         {
-            matchFoods = new ArrayList();
+            matchFoods = new List<FoodItems>();
         }
 
         // Add all the food that match in to a new arraylist
@@ -315,7 +315,7 @@ public class FoodSpawner : MonoBehaviour
             DropDownNewFood();
 
             // Reset the match food arraylist after remove
-            matchFoods = new ArrayList();
+            matchFoods = new List<FoodItems>();
 
             // Check the new spawn food is match
             yield return new WaitForSeconds(.6f);
@@ -340,7 +340,7 @@ public class FoodSpawner : MonoBehaviour
 
 
             // Reset the matchfood arraylist
-            matchFoods = new ArrayList();
+            matchFoods = new List<FoodItems>();
 
             // Run this function every .8s
             yield return new WaitForSeconds(.6f);

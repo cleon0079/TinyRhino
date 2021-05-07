@@ -11,6 +11,8 @@ public class FoodItems : MonoBehaviour
     public GameObject foodSpriteObj;
 
     private Transform selfTransform;
+	
+	public int multiply = 3;
 
     private void Awake()
     {
@@ -59,6 +61,8 @@ public class FoodItems : MonoBehaviour
         foodSpriteObj = null;
 
         // adds a point per food destroyed
-        Points.score++;      
+        Points.score+= 1;      
+
+        
     }
 }
