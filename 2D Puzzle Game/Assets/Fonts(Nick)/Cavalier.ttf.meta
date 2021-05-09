@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ebea7b7f82306a8488e6fe02b88fc39c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cavalier
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 97c20407044498d4bad0d6b7c392013b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
